@@ -33,6 +33,7 @@ namespace UserMaintenance
             this.txtLastName = new System.Windows.Forms.TextBox();
             this.lblLastName = new System.Windows.Forms.Label();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnWrite = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listUser
@@ -69,11 +70,22 @@ namespace UserMaintenance
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // btnWrite
+            // 
+            this.btnWrite.Location = new System.Drawing.Point(301, 122);
+            this.btnWrite.Name = "btnWrite";
+            this.btnWrite.Size = new System.Drawing.Size(162, 23);
+            this.btnWrite.TabIndex = 6;
+            this.btnWrite.Text = "button1";
+            this.btnWrite.UseVisualStyleBackColor = true;
+            this.btnWrite.Click += new System.EventHandler(this.btnWrite_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnWrite);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblLastName);
             this.Controls.Add(this.txtLastName);
@@ -91,6 +103,7 @@ namespace UserMaintenance
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnWrite;
     }
 }
 
