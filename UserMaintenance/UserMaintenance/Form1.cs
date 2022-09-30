@@ -52,5 +52,12 @@ namespace UserMaintenance
                 }
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            string nev = txtLastName.Text;
+            var od = from x in users where x.FullName == nev select x;
+            users.Remove(od.FirstOrDefault());
+        }
     }
 }
