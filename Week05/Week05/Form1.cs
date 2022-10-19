@@ -21,6 +21,30 @@ namespace Week05
         public Form1()
         {
             InitializeComponent();
+            var mnbService = new MNBArfolyamServiceSoapClient();
+            var request = new GetCurrenciesRequestBody
+            {};
+            var response = mnbService.GetCurrencies(request);
+            var result = response.GetCurrenciesResult;
+            Console.WriteLine(result);
+            var xml = new XmlDocument();
+            xml.LoadXml(result);
+            foreach (XmlElement element in xml.DocumentElement)
+            {
+                foreach (XmlElement item in element)
+                {
+                    string currency;
+                    currency = Convert.ToString(item.InnerText);
+                    currencies.Add(currency);
+                }
+            }
+            /*XmlNodeList crr = xml.GetElementsByTagName("Curr");
+            foreach (XmlElement element in crr)
+            {
+                string currency;
+                currency = Convert.ToString(element.InnerText);
+                currencies.Add(currency);
+            }*/
             RefreshData();
             comboBox1.DataSource = currencies;
         }
@@ -30,7 +54,6 @@ namespace Week05
             Rates.Clear();
             Feldolgozas();
             Megjelenites();
-            comboBox1.Text = "EUR";
         }
 
         private void Megjelenites()
@@ -71,6 +94,8 @@ namespace Week05
                 Rates.Add(peldany);
                 peldany.Date = Convert.ToDateTime(element.GetAttribute("date"));
                 var child = (XmlElement)element.ChildNodes[0];
+                if (child == null)
+                    continue;
                 peldany.currency = child.GetAttribute("curr");
                 var unit = decimal.Parse(child.GetAttribute("unit"));
                 var value = decimal.Parse(child.InnerText);
